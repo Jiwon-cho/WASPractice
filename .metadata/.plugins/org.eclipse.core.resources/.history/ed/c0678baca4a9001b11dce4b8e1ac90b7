@@ -1,0 +1,118 @@
+package com.servlet.data.controller;
+
+import java.io.IOException;
+import java.util.ArrayList;
+import java.util.Enumeration;
+
+import javax.servlet.ServletException;
+import javax.servlet.annotation.WebServlet;
+import javax.servlet.http.HttpServlet;
+import javax.servlet.http.HttpServletRequest;
+import javax.servlet.http.HttpServletResponse;
+
+/**
+ * Servlet implementation class TestPerson
+ */
+@WebServlet("/testPerson.do")
+public class TestPerson extends HttpServlet {
+	private static final long serialVersionUID = 1L;
+       
+    /**
+     * @see HttpServlet#HttpServlet()
+     */
+    public TestPerson() {
+        super();
+        // TODO Auto-generated constructor stub
+    }
+
+	/**
+	 * @see HttpServlet#doGet(HttpServletRequest request, HttpServletResponse response)
+	 */
+	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+		// TODO Auto-generated method stub
+//		response.getWriter().append("Served at: ").append(request.getContextPath());
+		request.setCharacterEncoding("utf-8");
+
+		//클라이언트가 전송한 데이터 받기
+		//1. 기본데이터 받기(단일값) : request.getParameter("key);
+		String name=request.getParameter("name");
+		//다른 자료형으로 사용하려면 파싱처리해야한다. -> String -> int, String -> double
+		//Integer, Double .. parseInt(), parseDouble()..
+		int age=Integer.parseInt(request.getParameter("age"));
+		double height=Double.parseDouble(request.getParameter("height"));
+		
+		String color=request.getParameter("color");
+		//이렇게 가져오면 그냥 하나만 딱 가져오고 맘
+		
+		//여러개의 값의 parameter를 가져올 때
+		//request.getParameterValues() -> 다중값을 가져올 때 사용
+		//반환 -> String[]
+		String[] foods=request.getParameterValues("food");
+		// * 단일값도 getParameterValues() 매소드를 이용할 수 있다. -> 0번 인덱스에 대입
+//		String[] na=request.getParameterValues("name");//이렇게도 가져올 수 있음 0번인덱스만 가져옴
+		String animal=request.getParameter("animal");
+		System.out.println(name+" : "+age+" : "+height+ " : "+color);
+		for(String f: foods) {
+			System.out.println(f);
+		}
+		System.out.println();
+		
+		
+		//parameter의 값을 가져오는 다른 방법
+		//key 값을 모를 때 key 값을 가져오는 방법
+		//request.getParameterNames(); -> 클라이언트가 보낸 데이터의 모든 key값을 반환
+		//반환형이 Enumberation객체(Iterator)
+		ArrayList<String[]> parameterValues=new ArrayList();
+		//key값으로 values를 가져와서 저장시키는 객체
+		
+		System.out.println("==========");
+		Enumeration<String> keys=request.getParameterNames();
+		while(keys.hasMoreElements()) {
+//			System.out.println(keys.nextElement());
+			String key=keys.nextElement();
+			parameterValues.add(request.getParameterValues(key));
+		}
+		for(String[] v: parameterValues) {
+			for(String pv:v) {
+				System.out.println("값: "+pv);
+			}
+		}
+		
+		
+		
+		
+		
+		
+		
+//		 String name=request.getParameter("name");
+//		 String age=request.getParameter("age");
+//		 String height=request.getParameter("height");
+//		String color=request.getParameter("color");
+//		 String food=request.getParameter("food");
+//		 String animal=request.getParameter("animal");
+//		 System.out.println(name+" "+age+" "+height+" "+color+" "+food+" "+animal);
+//		 response.setContentType("text/html;charset=utf-8");
+//		 PrintWriter out=response.getWriter();
+//		 String html="<html>";
+//		 html+="<body>";
+//		 html+="<h1>당신이 입력한 이름은 "+name+" 나이는 "+age+" 키는 "+height+" 색깔은 "+color+" 음식은 "+food+" 동물은 "+animal+"</h1>";
+//		 html+="</body>";
+//		 html+="</html>";
+//		 out.write(html);
+		
+		
+		
+		 
+		 
+	}
+
+	/**
+	 * @see HttpServlet#doPost(HttpServletRequest request, HttpServletResponse response)
+	 */
+	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+		// TODO Auto-generated method stub
+		doGet(request, response);
+		
+	}
+
+}

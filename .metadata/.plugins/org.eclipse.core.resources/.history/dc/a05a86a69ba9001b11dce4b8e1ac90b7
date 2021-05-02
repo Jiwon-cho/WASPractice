@@ -1,0 +1,54 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+<title>개인취향 테스트</title>
+<style>
+ul{
+	list-style-type:none;
+	}
+ul>li{
+	margin-bottom:20px;
+}
+</style>
+
+
+</head>
+<body>
+<h2>당신의 개인취향을 테스트 합니다.</h2>
+<p>데이터 입력후 확인 버튼을 누르세요!</p>
+<form action="" method="post">
+<ul>
+<li>이름 <input type="text" name="name"></li>
+<li>나이 <input type="number" name="age"></li>
+<li>키 <input type="text" name="height"></li>
+<li>좋아하는색 
+	<label><input type="radio" name="color" value="cornflowerblue">시퍼런색</label>
+	<label><input type="radio" name="color" value="royalblue">로얄블루</label>
+	<label><input type="radio" name="color" value="gold">금색</label>
+	<label><input type="radio" name="color" value="deeppink">딥핑크</label>
+	<label><input type="radio" name="color" value="green">녹색</label>
+
+</li>
+<li>좋아하는 음식
+<label><input type="checkbox" name="food" value="시리얼">시리얼</label>
+<label><input type="checkbox" name="food" value="가브리살">가브리살</label>
+<label><input type="checkbox" name="food" value="갈비">갈비</label>
+<label><input type="checkbox" name="food" value="토다이">토다이</label>
+<label><input type="checkbox" name="food" value="계란초밥">계란초밥</label>
+</li>
+<li>좋아하는 동물
+<select name="animal">
+<option value="카피바라">카피바라</option>
+<option value="강아지">강아지</option>
+<option value="코알라">코알라</option>
+<option value="삵">삵</option>
+<option value="쿼카">쿼카</option>
+</select>
+
+
+</ul>
+</form>
+
+</body>
+</html>

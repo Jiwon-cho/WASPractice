@@ -1,0 +1,14 @@
+package com.basicservlet.controller;
+
+import javax.servlet.http.HttpServlet;
+
+public class AnnoServlet extends HttpServlet{
+
+	public AnnoServlet() {
+	
+	}
+	
+	
+	
+
+}

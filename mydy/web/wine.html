@@ -1,0 +1,101 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>wine</title>
+    <link href="https://fonts.googleapis.com/css2?family=New+Tegomin&display=swap" rel="stylesheet">
+<style>
+    html{
+        font-family: "New Tegomin";
+    }
+    div.title{
+      display:flex;
+      justify-content: center;
+            
+        background-image: url(https://upload.wikimedia.org/wikipedia/commons/6/65/Yuuyake.JPEG);
+        background-repeat: no-repeat;
+        background-size:100%;
+        font-size:30px;
+        height:300px;
+        
+        
+       }
+       .contents{
+           display:flex;
+           justify-content: center;
+            align-items: center;
+
+       }
+       .explain{
+           white-space:pre-line;
+           font-size:20px;
+            margin-right:10%;
+            margin-left:10%;
+         
+       }
+       .image{
+           margin-top:10%;
+           margin-left:10%;
+       }
+       span{
+           font-size:25px;
+            color:black;
+       }
+       h1{
+           color:crimson;
+       }
+       .sitetitle{
+        color:rgb(250,236,197);
+       }
+       .selecting{
+        margin-right:10%;   
+       }
+       .selectbox { position: relative; width: 200px;  border: 1px solid crimson;  background-color: crimson   ;/* 테두리 설정 */ z-index: 1; } 
+       .selectbox:before {  content: ""; position: absolute; top: 50%; right: 15px; width: 0; height: 0; margin-top: -1px; border-left: 5px solid transparent; border-right: 5px solid transparent; border-top: 5px solid #333; } 
+       .selectbox label { margin-left:20%; position: absolute; top: 1px; /* 위치정렬 */ left: 5px; /* 위치정렬 */ padding: .1em .5em; /* select의 여백 크기 만큼 */text-align:justify; font-weight:bold;color: #999; z-index: -1; /* IE8에서 label이 위치한 곳이 클릭되지 않는 것 해결 */ } 
+       .selectbox select { width: 100%; height: auto; /* 높이 초기화 */ line-height: normal; /* line-height 초기화 */ font-family: inherit; /* 폰트 상속 */ padding: .8em .5em; /* 여백과 높이 결정 */ border: 0; opacity: 0; /* 숨기기 */ filter:alpha(opacity=0); /* IE8 숨기기 */ -webkit-appearance: none; /* 네이티브 외형 감추기 */ -moz-appearance: none; appearance: none; }
+
+       
+</style>
+</head>
+<body>
+    
+        <header id="masterhead" class="site-header">
+            <div class="title">
+            <h1 class="sitetitle">Won's LCBK</h1>
+            </div>
+        </header>
+    </div>
+    <div class="contents">
+        <div class="image">
+            <img src="https://www.taylor.pt/content/uploads/maingallery/crops/3265_crop_1614006596.jpg" >
+        </div>
+        <div class="explain">
+         <h1>  
+             <span>FULL BODIED & FRUITY</span>
+            Late Bottled Vintage</h1> 
+
+Late Bottled Vintage, or LBV, is the most popular premium Port style in both England and Canada, representing one in five purchases of Port in the UK and over a quarter of all Port enjoyed by Canadians.
+
+Vintage Port and LBV both present a selection of very fine full bodied red ports from a single year. The fundamental difference between the two styles lies in the way each is matured. Vintage Port is kept in wood for only twenty months or so before being transferred to the bottle where it will continue to age. Late Bottled Vintage, as the name suggests, is bottled later, remaining in wood between four and six years. During this relatively long period of wood ageing, an LBV matures and settles down -  it is ready to drink when bottled, does not need to be decanted and can be served by the glass for several weeks after the cork is drawn.
+
+LBV was developed as a high quality but more affordable and immediately drinkable alternative to Vintage port to be enjoyed by the glass on everyday occasions. It was first launched in 1970 by Taylor’s current Chairman, Alistair Robertson, with the Late Bottled Vintage 1965.
+Although many other houses now offer this wonderful style of wine, Taylor’s LBV – the original Late Bottled Vintage – remains the benchmark in the category; the first choice of the knowledgeable Port drinker.
+
+Deep ruby colour. The elegant and stylish nose combines fresh, intense blackcurrant and cherry aromas with subtle notes of liquorice and spice. On the palate the rich and concentrated black fruit flavour is supported by firm but well integrated tannins. True to the Taylor’s style the wine shows great balance and finesse.
+        </div>
+      <div class="selecting">
+        <div class="selectbox"> <label for="ex_select">Select Year</label> <select id="ex_select"> <option selected>Select Year</option> <option>2011</option> <option>2012</option> <option>2013</option> <option>2013</option>  
+            <option>2014</option>
+            <option>2015</option>
+            <option>2016</option>
+        </select> </div>
+
+      </div>
+
+    </div>
+    
+</body>
+</html>
