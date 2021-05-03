@@ -42,8 +42,8 @@ public class TestPerson extends HttpServlet {
 		String name=request.getParameter("name");
 		//다른 자료형으로 사용하려면 파싱처리해야한다. -> String -> int, String -> double
 		//Integer, Double .. parseInt(), parseDouble()..
-		int age=Integer.parseInt(request.getParameter("age"));
-		double height=Double.parseDouble(request.getParameter("height"));
+		int age=Integer.parseInt(request.getParameter("age")==null?"0":request.getParameter("age"));
+		double height=Double.parseDouble(request.getParameter("height")==null?"0":request.getParameter("height"));
 		
 		String color=request.getParameter("color");
 		//이렇게 가져오면 그냥 하나만 딱 가져오고 맘
