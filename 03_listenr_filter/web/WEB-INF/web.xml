@@ -5,6 +5,23 @@
   <listener>
   <listener-class>com.common.listener.ContextTestListener</listener-class>
   </listener>
+  
+  <!--필터 등록하기
+  <filter> 태그가 있음 -> filter 클래스를 등록하는 태그
+  	자식 태그 <filter-name>, <filter-class>
+  	<filter-mapping> 태그 -> 등록된 필터를 주소,servlet이름으로 연결해주는 태그
+  	자식태그<filter-name>,<url-pattern>
+   -->
+   
+  <filter>
+  <filter-name>test-filter</filter-name>
+  <filter-class>com.common.filter.FirstFilter</filter-class>
+  </filter>
+  
+  <filter-mapping>
+  <filter-name>test-filter</filter-name>
+  <url-pattern>*.do</url-pattern>
+  </filter-mapping>
   <welcome-file-list>
     <welcome-file>index.html</welcome-file>
     <welcome-file>index.htm</welcome-file>
