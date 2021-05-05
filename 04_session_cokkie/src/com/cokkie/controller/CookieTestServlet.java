@@ -45,6 +45,7 @@ public class CookieTestServlet extends HttpServlet {
 		html+="<button onclick='location.assign(\"checkcookie.do\");'>저장된 쿠키확인</button>";
 		html+="</body>";
 		html+="</html>";
+//		일단 오리고보자
 		response.getWriter().print(html);
 	}
 
