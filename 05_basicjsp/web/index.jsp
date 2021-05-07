@@ -164,5 +164,27 @@ name.length();
 <p>다른 jsp 페이지를 가져오는 것==iframe 태그와 비슷</p>
 <h3><a href="<%=request.getContextPath() %>/views/main.jsp">메인으로!</a></h3>
 
+<h2>기본기능 구현해보기</h2>
+<a href="<%=request.getContextPath() %>/views/test.jsp">회원정보 불러오기</a>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 </body>
 </html>
