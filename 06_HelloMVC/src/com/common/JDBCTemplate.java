@@ -85,3 +85,4 @@ String path=JDBCTemplate.class.getResource("/driver/driver.properties").getPath(
 	}
 	
 }
+//practice
