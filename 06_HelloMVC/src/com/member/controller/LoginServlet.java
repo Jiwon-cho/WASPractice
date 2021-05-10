@@ -62,6 +62,13 @@ public class LoginServlet extends HttpServlet {
 		}else {
 			//로그인 실패
 			//로그인 실패 알람을 띄워주고 메인화면으로 이동
+			String msg="아이디, 비밀번호가 일치하지 않습니다.";
+			String loc="/";
+			request.setAttribute("msg",msg);
+			request.setAttribute("loc", loc);
+			
+			RequestDispatcher rd=request.getRequestDispatcher("/views/common/msg.jsp");
+			rd.forward(request, response);
 		}
 	}
 	/**

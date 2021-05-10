@@ -48,7 +48,21 @@
 					</table>
 				</form>
 				<%} else{%>
-					<p><%=loginMember.getUserName() %>님 반갑습니다!</p>
+				<table id="logged-in">
+				<tr>
+				<td colspan="2">
+				<%=loginMember.getUserName() %>님, 환영합니다.
+				</td>
+				</tr>
+				<tr>
+				<td>
+				<input type="button" value="내 정보보보기">
+				</td>
+				<td>
+				<input type="button" value="로그아웃"
+				onclick='fn_logout();'>
+				</td>
+				</table>
 			
 				<%} %>
 			</div>
@@ -74,6 +88,10 @@
 					return false;
 				}
 				return true;
+			}
+			
+			const fn_logout=()=>{
+				location.replace("<%=request.getContextPath()%>/logout")
 			}
 		
 		</script>
