@@ -22,4 +22,27 @@ public class MemberService {
 
 		return m;
 	}
+	
+	
+	public int register(Member m) {
+		Connection conn=getConnection();
+		int check=dao.register(conn,m);
+		if (check>0) commit(conn);
+		else rollback(conn);
+		close(conn);
+
+		return check;
+		
+	}
+	
+	
+	public int checkId(String s) {
+		Connection conn=getConnection();
+		
+		int checkId=dao.checkId(conn,s);
+		
+		return checkId;
+		
+		
+	}
 }

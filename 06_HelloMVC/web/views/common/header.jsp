@@ -4,6 +4,18 @@
 <%
    	//Member loginMember=(Member)request.getAttribute("loginMember");   
 	Member loginMember=(Member)session.getAttribute("loginMember");
+
+	//Cookie에 있는 값 가져오기
+	Cookie []c=request.getCookies();
+	String saveId=null;
+	if(c!=null){
+		for(Cookie k:c){
+			if(k.getName().equals("saveId")){
+				saveId=k.getValue();
+				break;
+			}
+		}
+	}
 %>
 <!DOCTYPE html>
 <html>
@@ -25,7 +37,7 @@
 						<tr>
 							<td>
 								<input type="text" name="userId" id="userId"
-								placeholder="아이디">
+								placeholder="아이디" value="<%=saveId==null?"":saveId%>">
 							</td>
 							<td></td>
 						</tr>
@@ -40,9 +52,11 @@
 						</tr>
 						<tr>
 							<td colspan="2">
-								<input type="checkbox" name="saveId" id="saveId">
+								<input type="checkbox" name="saveId" id="saveId"
+							<%=saveId!=null?"checked":"" %>>
 								<label for="saveId">아이디저장</label>
-								<input type="button" value="회원가입">
+								<input type="button" value="회원가입"
+								onclick="fn_register();">
 							</td>
 						</tr>
 					</table>
@@ -92,6 +106,10 @@
 			
 			const fn_logout=()=>{
 				location.replace("<%=request.getContextPath()%>/logout")
+			}
+			
+			const fn_register=()=>{
+				location.replace("<%=request.getContextPath()%>/register")
 			}
 		
 		</script>

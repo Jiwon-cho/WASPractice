@@ -5,6 +5,7 @@ import java.io.IOException;
 import javax.servlet.RequestDispatcher;
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
+import javax.servlet.http.Cookie;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
@@ -36,6 +37,25 @@ public class LoginServlet extends HttpServlet {
 		//로그인 처리하는 서비스
 		String userId=request.getParameter("userId");
 		String password=request.getParameter("password");
+		
+		String saveId=request.getParameter("saveId");
+		
+		System.out.println("saveId : "+saveId);
+		
+		//saveId값을 기준으로 체크박스가 체크되었는지 안되었는지 확인
+		//null 체크안함/ on 체크함
+		if(saveId !=null) {
+			//현재 보낸 아이디 값을 Cookie에 저장하자.
+			Cookie c=new Cookie("saveId",userId);
+			c.setMaxAge(7*24*60*60);
+			response.addCookie(c);
+		}else {
+			//생성된 쿠키 지우기
+			Cookie c=new Cookie("saveId","");
+			c.setMaxAge(0);
+			response.addCookie(c);
+			
+		}
 		
 		System.out.println("userId : "+userId+" password: "+password);
 		
