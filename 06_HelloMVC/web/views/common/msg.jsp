@@ -13,6 +13,7 @@
 <body>
 <script>
 	alert('<%=msg%>');
+	<%=request.getAttribute("script")!=null?request.getAttribute("script"):""%>
 	location.replace('<%=request.getContextPath()%><%=loc%>');
 	/* request 준곳은 메인페이지/ 거기의 콘텍스트 페스->메인 +/-> 메인 */
 </script>

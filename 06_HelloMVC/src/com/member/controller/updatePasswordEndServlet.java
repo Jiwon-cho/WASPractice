@@ -1,28 +1,26 @@
 package com.member.controller;
 
 import java.io.IOException;
-
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
-import com.common.AESEncrypt;
 import com.member.model.service.MemberService;
 import com.member.model.vo.Member;
 
 /**
- * Servlet implementation class MyinfoServlet
+ * Servlet implementation class updatePasswordEndServlet
  */
-@WebServlet("/memberView.do")
-public class MyinfoServlet extends HttpServlet {
+@WebServlet(name="updatePassword",urlPatterns="/updatePasswordEnd")
+public class updatePasswordEndServlet extends HttpServlet {
 	private static final long serialVersionUID = 1L;
        
     /**
      * @see HttpServlet#HttpServlet()
      */
-    public MyinfoServlet() {
+    public updatePasswordEndServlet() {
         super();
         // TODO Auto-generated constructor stub
     }
@@ -32,28 +30,39 @@ public class MyinfoServlet extends HttpServlet {
 	 */
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		// TODO Auto-generated method stub
-		//역할! 클라이언트가 보낸 아이디하고 일치하는 회원의 정보를ㄹ 가져와
-		//그 정보를 출력해주는 페이지와 연결
+		String curPw=request.getParameter("password");
 		String userId=request.getParameter("userId");
 		
-		Member m=new MemberService().selectMemberId(userId);
+		Member m=new MemberService().login(userId,curPw);
 		
-		//암호화된 자료를 복호화 처리
-		try {
-		m.setEmail(AESEncrypt.decrypt(m.getEmail()));
-		}catch(Exception e) {
-			e.printStackTrace();
+		String msg="";
+		String loc="";
+		
+		if(m==null) {
+			//비밀번호 불일치
+			msg="현재 비밀번호가 일치하지 안습니다.";
+			loc="/changePassword?=userId="+userId;
+		
+		}else {
+			//비밀번호 일치
+			String newPw=request.getParameter("password_new");
+			int result=new MemberService().updatePassword(userId, newPw);			
+			if(result>0) {
+				msg="비밀번호 수정완료";
+				loc="/";
+				request.setAttribute("script", "window.close();");
+			}else {
+				msg="비밀번호 수정실패";
+				loc="/member/updatePassword?userId="+userId;
+				
+			}
+			
 		}
-		try {
-			m.setPhone(AESEncrypt.decrypt(m.getPhone()));
 		
-		}catch(Exception e) {
-			e.printStackTrace();
-		}
+		request.setAttribute("msg", msg);
+		request.setAttribute("loc", loc);
 		
-		request.setAttribute("member", m);
-		
-		request.getRequestDispatcher("views/member/myInfo.jsp").forward(request, response);
+		request.getRequestDispatcher("views/common/msg.jsp").forward(request, response);
 	}
 
 	/**

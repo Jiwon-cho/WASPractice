@@ -150,15 +150,15 @@ public class MemberDao {
 		int result=0;
 		try {
 			pstmt=conn.prepareStatement(prop.getProperty("updateMember"));
-			pstmt.setString(1, m.getPassword());
-			pstmt.setString(2, m.getUserName());
-			pstmt.setString(3, m.getGender());
-			pstmt.setInt(4, m.getAge());
-			pstmt.setString(5, m.getEmail());
-			pstmt.setString(6, m.getPhone());
-			pstmt.setString(7, m.getAddress());
-			pstmt.setString(8,m.getHobby());
-			pstmt.setString(9, m.getUserId());
+//			pstmt.setString(1, m.getPassword());
+			pstmt.setString(1, m.getUserName());
+			pstmt.setString(2, m.getGender());
+			pstmt.setInt(3, m.getAge());
+			pstmt.setString(4, m.getEmail());
+			pstmt.setString(5, m.getPhone());
+			pstmt.setString(6, m.getAddress());
+			pstmt.setString(7,m.getHobby());
+			pstmt.setString(8, m.getUserId());
 			result=pstmt.executeUpdate();
 		}catch(Exception e) {
 			e.printStackTrace();
@@ -167,4 +167,21 @@ public class MemberDao {
 		}
 		return result;
 	}
+	
+	public int updatePassword(Connection conn,String userId, String pw) {
+		PreparedStatement pstmt=null;;
+		int result=0;
+		try {
+			pstmt=conn.prepareStatement(prop.getProperty("updatePassword"));
+			pstmt.setString(1, pw);
+			pstmt.setString(2, userId);
+			result=pstmt.executeUpdate();
+		}catch(Exception e) {
+			e.printStackTrace();
+		}finally {
+			close(pstmt);
+		}
+		return result;
+	}
+	
 }

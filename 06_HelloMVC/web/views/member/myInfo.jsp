@@ -27,7 +27,7 @@ for(String h: hobby){
 						value="<%=m.getUserId() %>">
 					</td>
 				</tr>
-				<tr>
+			<%-- 	<tr>
 					<th>패스워드</th>
 					<td>
 						<input type="password" name="password" id="password_"
@@ -39,7 +39,7 @@ for(String h: hobby){
 					<td>	
 						<input type="password" id="password_2"><br>
 					</td>
-				</tr>  
+				</tr>   --%>
 				<tr>
 					<th>이름</th>
 					<td>	
@@ -113,7 +113,9 @@ for(String h: hobby){
 				</tr>
 			</table>
 			<input type="button" value="정보수정" onclick="fn_updateMember();"/>
+		    <input type="button" value="비밀번호변경" onclick="fn_changePassword();"/>
 			<input type="button" value="탈퇴" onclick="fn_deleteMember();"/>
+			
 		</form>
 	</section>
 	<script>
@@ -130,6 +132,15 @@ for(String h: hobby){
 		updateFrm.submit();
 
 	}
+ 
+ const fn_changePassword=()=>{
+	 const status="width=400px,height=210px,left=500px,top=200px";
+	 const title="changePassword";
+ 	const url="<%=request.getContextPath()%>/changePassword?userId=<%=m.getUserId()%>";
+ 	window.open(url,title,status);
+ 	
+	 
+ }
 	</script>
 
 <%@ include file="/views/common/footer.jsp"%>	

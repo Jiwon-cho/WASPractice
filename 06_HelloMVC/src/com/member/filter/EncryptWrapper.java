@@ -19,7 +19,7 @@ public class EncryptWrapper extends HttpServletRequestWrapper {
 	public String getParameter(String name) {
 		String value;
 		
-		if(name.equals("password")) {
+		if(name.equals("password")||name.equals("password_new")) {
 			//password name은 암호화해서
 			System.out.println("암호화전: "+super.getParameter(name));
 			

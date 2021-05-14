@@ -35,7 +35,7 @@ public class MemberUpdateServlet extends HttpServlet {
 		//클라이언트가 보낸 회원정보를 DB의 Member 테이블에 일치한는 정보와 변경한다.
 		Member m=new Member();
 		m.setUserId(request.getParameter("userId"));
-		m.setPassword(request.getParameter("password"));
+//		m.setPassword(request.getParameter("password"));
 		m.setUserName(request.getParameter("userName"));
 		m.setGender(request.getParameter("gender"));
 		m.setAge(Integer.parseInt(request.getParameter("age")));

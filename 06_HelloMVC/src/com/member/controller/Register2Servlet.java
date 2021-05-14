@@ -9,13 +9,14 @@ import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
+import com.common.AESEncrypt;
 import com.member.model.service.MemberService;
 import com.member.model.vo.Member;
 
 /**
  * Servlet implementation class Register2Servlet
  */
-@WebServlet("/register2")
+@WebServlet(name="register2",urlPatterns="/register2")
 public class Register2Servlet extends HttpServlet {
 	private static final long serialVersionUID = 1L;
        
@@ -38,8 +39,16 @@ public class Register2Servlet extends HttpServlet {
 		m.setUserName(request.getParameter("userName"));
 		m.setGender(request.getParameter("gender"));
 		m.setAge(Integer.parseInt(request.getParameter("age")));
-		m.setEmail(request.getParameter("email"));
-		m.setPhone(request.getParameter("phone"));
+		try {
+		m.setEmail(AESEncrypt.encrypt(request.getParameter("email")));
+		}catch(Exception e) {
+			e.printStackTrace();
+		}
+		try {
+		m.setPhone(AESEncrypt.encrypt(request.getParameter("phone")));
+		}catch(Exception e) {
+			e.printStackTrace();
+		}
 		m.setAddress(request.getParameter("address"));
 		String[] hobbies=request.getParameterValues("hobby");
 		String h=String.join(",", hobbies);
