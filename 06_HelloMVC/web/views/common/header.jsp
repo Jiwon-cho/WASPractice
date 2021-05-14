@@ -70,7 +70,7 @@
 				</tr>
 				<tr>
 				<td>
-				<input type="button" value="내 정보보보기">
+				<input type="button" value="내 정보보보기" onclick="location.assign('<%=request.getContextPath()%>/memberView.do?userId=<%=loginMember.getUserId()%>')">
 				</td>
 				<td>
 				<input type="button" value="로그아웃"
@@ -111,6 +111,8 @@
 			const fn_register=()=>{
 				location.replace("<%=request.getContextPath()%>/register")
 			}
+			
+		
 		
 		</script>
 		

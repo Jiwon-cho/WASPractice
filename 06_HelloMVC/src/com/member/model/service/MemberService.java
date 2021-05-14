@@ -36,13 +36,45 @@ public class MemberService {
 	}
 	
 	
-	public int checkId(String s) {
+	public String checkId(String s) {
 		Connection conn=getConnection();
 		
-		int checkId=dao.checkId(conn,s);
-		
+		String checkId=dao.checkId(conn,s);
+		close(conn);
+
 		return checkId;
 		
 		
 	}
+	
+	public Member selectMemberId(String userId) {
+		Connection conn=getConnection();
+		Member m=dao.selectMemberId(conn,userId);
+		close(conn);
+		return m;
+	}
+	
+	public int deleteMember(String userId) {
+Connection conn=getConnection();
+		
+		int result=dao.deleteMember(conn,userId);
+		if(result>0)commit(conn);
+		else rollback(conn);
+		close(conn);
+
+		return result;
+		
+		
+	}
+	
+	public int updateMember(Member m) {
+		Connection conn=getConnection();
+		int result=dao.updateMember(conn,m);
+		if(result>0)commit(conn);
+		else rollback(conn);
+		close(conn);
+
+		return result;
+	}
+	
 }
