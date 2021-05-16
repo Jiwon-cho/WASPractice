@@ -10,6 +10,7 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
 import com.admin.model.service.AdminService;
+import com.common.AESEncrypt;
 import com.member.model.vo.Member;
 
 /**
@@ -32,9 +33,67 @@ public class adminMemberListServlet extends HttpServlet {
 	 */
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		// TODO Auto-generated method stub
+		//1.현재페이지
+		int cPage;
+		try {
+		cPage=Integer.parseInt(request.getParameter("cPage"));
+		}catch(NumberFormatException e) {
+			cPage=1;
+		}
 		
-		List<Member> list=new AdminService().selectMemberList();
 		
+		
+		
+		//2. 페이지당 출력할 데이터수'
+		int numPerpage;
+		try {
+		 numPerpage=Integer.parseInt(request.getParameter("numPerpage"));
+		}catch(NumberFormatException e) {
+			numPerpage=5;
+		}
+		
+		//pageBar태그 만들기
+		int totalData=new AdminService().selectMemberCount();
+		int totalPage=(int)Math.ceil((double)totalData/numPerpage);
+		
+		int pageBarSize=5;
+		int pageNo=((cPage-1)/pageBarSize)*pageBarSize+1;
+		int pageEnd=pageNo+pageBarSize-1;
+		
+		//페이지바 html로 구성하기
+		String pageBar="";
+		//[이전] 1 2 3 4 5 [다음]
+		if(pageNo==1) {
+			pageBar+="<span>[이전]</span>";
+		}else {
+			pageBar+="<a href='"+request.getContextPath()+"/admin/memberList?cPage="+(pageNo-1)+"'>[이전]</a>";
+		}
+		
+		while(!(pageNo>pageEnd||pageNo>totalPage)) {
+			if(cPage==pageNo) {
+				pageBar+="<span>"+pageNo+"</span>";
+			}else {
+				pageBar+="<a href='"+request.getContextPath()+"/admin/memberList?cPage="+pageNo+"'>"+pageNo+"</a>";
+			}
+			pageNo++;
+		}
+		//pageNo 6,11,16,21
+		if(pageNo>totalPage) {
+			pageBar+="<span>[다음]</span>";
+		}else {
+			pageBar+="<a href='"+request.getContextPath()+"/admin/memberList?cPage="+pageNo+"'>[다음]</a>";
+		}
+		
+		request.setAttribute("pageBar",pageBar);
+		
+		//page에 해당하는 만큼의 데이터만 가져오기
+		List<Member> list=new AdminService().selectMemberList(cPage,numPerpage);
+		for(Member m: list) {
+			try {
+				m.setPhone(AESEncrypt.decrypt(m.getPhone()));
+				m.setEmail(AESEncrypt.decrypt(m.getEmail()));
+			}catch(Exception e) {}
+		}
 		request.setAttribute("list",list);
 		
 		request.getRequestDispatcher("/views/admin/memberList.jsp")

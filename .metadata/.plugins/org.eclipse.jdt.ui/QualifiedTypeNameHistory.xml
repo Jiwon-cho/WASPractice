@@ -28,12 +28,13 @@
     <fullyQualifiedTypeName name="javax.crypto.IllegalBlockSizeException"/>
     <fullyQualifiedTypeName name="javax.crypto.BadPaddingException"/>
     <fullyQualifiedTypeName name="java.util.Base64"/>
-    <fullyQualifiedTypeName name="com.common.AESEncrypt"/>
     <fullyQualifiedTypeName name="java.sql.Connection"/>
+    <fullyQualifiedTypeName name="java.sql.ResultSet"/>
+    <fullyQualifiedTypeName name="com.common.JDBCTemplate"/>
+    <fullyQualifiedTypeName name="com.common.AESEncrypt"/>
+    <fullyQualifiedTypeName name="java.lang.NumberFormatException"/>
     <fullyQualifiedTypeName name="java.util.List"/>
     <fullyQualifiedTypeName name="com.member.model.vo.Member"/>
     <fullyQualifiedTypeName name="java.sql.PreparedStatement"/>
-    <fullyQualifiedTypeName name="java.sql.ResultSet"/>
     <fullyQualifiedTypeName name="java.lang.Exception"/>
-    <fullyQualifiedTypeName name="com.common.JDBCTemplate"/>
 </qualifiedTypeNameHistroy>

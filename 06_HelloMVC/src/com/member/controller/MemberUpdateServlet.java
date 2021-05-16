@@ -9,6 +9,7 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 
+import com.common.AESEncrypt;
 import com.member.model.service.MemberService;
 import com.member.model.vo.Member;
 
@@ -39,8 +40,12 @@ public class MemberUpdateServlet extends HttpServlet {
 		m.setUserName(request.getParameter("userName"));
 		m.setGender(request.getParameter("gender"));
 		m.setAge(Integer.parseInt(request.getParameter("age")));
-		m.setEmail(request.getParameter("email"));
-		m.setPhone(request.getParameter("phone"));
+	try {	
+		m.setEmail(AESEncrypt.encrypt(request.getParameter("email")));
+	}catch(Exception e) { e.printStackTrace();}
+	try {
+		m.setPhone(AESEncrypt.encrypt(request.getParameter("phone")));
+	}catch(Exception e) {e.printStackTrace();}	
 		m.setAddress(request.getParameter("address"));
 		m.setHobby(String.join(",", request.getParameterValues("hobby")));
 		
