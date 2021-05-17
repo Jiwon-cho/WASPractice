@@ -14,7 +14,6 @@
     <fullyQualifiedTypeName name="java.sql.Statement"/>
     <fullyQualifiedTypeName name="javax.websocket.Session"/>
     <fullyQualifiedTypeName name="javax.servlet.http.Cookie"/>
-    <fullyQualifiedTypeName name="java.util.Date"/>
     <fullyQualifiedTypeName name="java.sql.SQLException"/>
     <fullyQualifiedTypeName name="java.security.MessageDigest"/>
     <fullyQualifiedTypeName name="java.security.NoSuchAlgorithmException"/>
@@ -28,13 +27,14 @@
     <fullyQualifiedTypeName name="javax.crypto.IllegalBlockSizeException"/>
     <fullyQualifiedTypeName name="javax.crypto.BadPaddingException"/>
     <fullyQualifiedTypeName name="java.util.Base64"/>
-    <fullyQualifiedTypeName name="java.sql.Connection"/>
     <fullyQualifiedTypeName name="java.sql.ResultSet"/>
-    <fullyQualifiedTypeName name="com.common.JDBCTemplate"/>
     <fullyQualifiedTypeName name="com.common.AESEncrypt"/>
-    <fullyQualifiedTypeName name="java.lang.NumberFormatException"/>
-    <fullyQualifiedTypeName name="java.util.List"/>
     <fullyQualifiedTypeName name="com.member.model.vo.Member"/>
     <fullyQualifiedTypeName name="java.sql.PreparedStatement"/>
     <fullyQualifiedTypeName name="java.lang.Exception"/>
+    <fullyQualifiedTypeName name="com.common.JDBCTemplate"/>
+    <fullyQualifiedTypeName name="java.util.Date"/>
+    <fullyQualifiedTypeName name="java.lang.NumberFormatException"/>
+    <fullyQualifiedTypeName name="java.sql.Connection"/>
+    <fullyQualifiedTypeName name="java.util.List"/>
 </qualifiedTypeNameHistroy>

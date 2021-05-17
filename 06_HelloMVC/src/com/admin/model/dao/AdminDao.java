@@ -7,9 +7,8 @@ import java.sql.ResultSet;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Properties;
-
-import com.member.model.vo.Member;
 import static com.common.JDBCTemplate.close;
+import com.member.model.vo.Member;
 
 public class AdminDao {
 
@@ -77,7 +76,7 @@ public class AdminDao {
 	}
 	
 	
-	public List<Member>selectSearchMember(Connection conn, String type, String keyword){
+	public List<Member>selectSearchMember(Connection conn,int cPage,int numPerpage, String type, String keyword){
 		PreparedStatement pstmt=null;
 		ResultSet rs=null;
 		List<Member> list=new ArrayList<Member>();
@@ -85,11 +84,13 @@ public class AdminDao {
 		try {
 			pstmt=conn.prepareStatement(sql.replace("#", type));
 			pstmt.setString(1, "%"+keyword+"%");
+			pstmt.setInt(2, (cPage-1)*numPerpage+1);
+			pstmt.setInt(3, cPage*numPerpage);
 			rs=pstmt.executeQuery();
 			
 			while(rs.next()) {
 				Member m=new Member();
-				m.setUserId(rs.getString("userid"));
+				m.setUserId(rs.getString("userId"));
 				m.setUserName(rs.getString("username"));
 				m.setGender(rs.getString("gender"));
 				m.setAge(rs.getInt("age"));
@@ -110,5 +111,24 @@ public class AdminDao {
 		return list;
 	}
 	
+	
+	public int selectSearchMemberCount(Connection conn, String type, String keyword) {
+		PreparedStatement pstmt=null;
+		ResultSet rs=null;
+		int result=0;
+		String sql=prop.getProperty("selectSearchMemberCount");
+		try {
+			pstmt=conn.prepareStatement(sql.replace("#", type));
+			pstmt.setString(1, "%"+keyword+"%");
+			rs=pstmt.executeQuery();
+			if(rs.next()) result=rs.getInt(1);		
+	}catch(Exception e) {
+		e.printStackTrace();
+		}finally {
+			close(pstmt);
+			close(rs);
+		}return result;
+		
+	}
 	
 }
