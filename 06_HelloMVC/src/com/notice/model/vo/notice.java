@@ -74,5 +74,15 @@ public class notice {
 	public void setStatus(String status) {
 		this.status = status;
 	}
+
+
+	@Override
+	public String toString() {
+		return "notice [noticeNo=" + noticeNo + ", noticeTitle=" + noticeTitle + ", noticeWriter=" + noticeWriter
+				+ ", noticeContent=" + noticeContent + ", noticeDate=" + noticeDate + ", filePath=" + filePath
+				+ ", status=" + status + "]";
+	}
+	
+	
 	
 }

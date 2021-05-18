@@ -2,7 +2,7 @@
     pageEncoding="UTF-8"%>
 <%@ include file="/views/common/header.jsp"%>
 <div id="notice-container">
-    <form action="" method="post">
+    <form action="<%=request.getContextPath() %>/notice/noticeWriteEnd" method="post" enctype="multipart/form-data">
         <table id="tbl-notice">
 	        <tr>
 	            <th>제 목</th>
@@ -15,7 +15,7 @@
 	        </tr>
 	        <tr>
 	            <th>첨부파일</th>
-	            <td><input type="file" name="up_file"></td>
+	            <td><input type="file" name="up_file" ></td>
 	           
 	        </tr>
 	        <tr>
