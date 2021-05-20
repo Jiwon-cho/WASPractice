@@ -23,7 +23,7 @@
             </tr>
 <%if(list.isEmpty()){ %>
 				<tr>
-					<td colspan="5">조회된 회원이 없습니다</td>
+					<td colspan="5">조회된 공지사항이 없습니다</td>
 				</tr>
 			<%}else{ 
 				for(notice n : list){%>
