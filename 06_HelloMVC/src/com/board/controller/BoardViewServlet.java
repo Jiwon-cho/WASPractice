@@ -1,6 +1,7 @@
 package com.board.controller;
 
 import java.io.IOException;
+import java.util.List;
 
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
@@ -11,6 +12,7 @@ import javax.servlet.http.HttpServletResponse;
 
 import com.board.model.service.BoardService;
 import com.board.model.vo.Board;
+import com.board.model.vo.Comment;
 
 /**
  * Servlet implementation class BoardViewServlet
@@ -64,6 +66,9 @@ public class BoardViewServlet extends HttpServlet {
 		 
 		 Board b=new BoardService().selectBoard(no,readFlag);	
 		 
+		 List<Comment> comments=new BoardService().selectComment(no);
+		 
+		 request.setAttribute("comments", comments);
 		String view="";
 		if(b==null) {
 			request.setAttribute("msg", "조회한 게시물이 없습니다!");

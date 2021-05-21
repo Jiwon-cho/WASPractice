@@ -12,8 +12,8 @@ import org.apache.tomcat.util.http.fileupload.servlet.ServletFileUpload;
 
 import com.board.model.service.BoardService;
 import com.board.model.vo.Board;
+import com.common.MyRenameFile;
 import com.oreilly.servlet.MultipartRequest;
-import com.oreilly.servlet.multipart.DefaultFileRenamePolicy;
 
 /**
  * Servlet implementation class BoardWriteEndServlet
@@ -43,7 +43,7 @@ public class BoardWriteEndServlet extends HttpServlet {
 		}
 		
 		String path=getServletContext().getRealPath("/upload/board/");
-		MultipartRequest mr=new MultipartRequest(request,path,1024*1024*200,"utf-8",new DefaultFileRenamePolicy());
+		MultipartRequest mr=new MultipartRequest(request,path,1024*1024*200,"utf-8",new MyRenameFile());
 		Board b=new Board();
 		b.setBoardTitle(mr.getParameter("boardTitle"));
 		b.setBoardWriter(mr.getParameter("boardWriter"));

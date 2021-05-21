@@ -11,8 +11,8 @@ import java.util.List;
 import java.util.Properties;
 
 import com.board.model.vo.Board;
+import com.board.model.vo.Comment;
 import com.notice.model.dao.noticeDao;
-import com.notice.model.vo.notice;
 
 public class BoardDao {
 	private Properties prop=new Properties();
@@ -134,5 +134,66 @@ public class BoardDao {
 		}return result;
 	
 	}
+	
+	public int insertComment(Connection conn, Comment c) {
+		PreparedStatement pstmt=null;
+		int result=0;
+		try {
+			pstmt=conn.prepareStatement(prop.getProperty("insertComment"));
+			pstmt.setInt(1, c.getLevel());
+			pstmt.setString(2, c.getBoardCommentWriter());
+			pstmt.setString(3, c.getBoardCommentContent());
+			pstmt.setInt(4, c.getBoardRef()); 
+//			pstmt.setInt(5, c.getBoardCommentRef());
+			pstmt.setString(5,c.getBoardCommentRef()==0?null:String.valueOf(c.getBoardCommentRef()));
+			//찹조가 없는 댓글은 null 이되야함
+				
+			result=pstmt.executeUpdate();
+	}catch(Exception e) {
+		e.printStackTrace();
+	}finally {
+		close(pstmt);
+	}return result;
+	
+	}
+	
+	public List<Comment> selectComment(Connection conn, int no){
+		PreparedStatement pstmt=null;
+		ResultSet rs=null;
+		List<Comment> list=new ArrayList();
+		try {
+			pstmt=conn.prepareStatement(prop.getProperty("selectComment"));
+			pstmt.setInt(1, no);
+			rs=pstmt.executeQuery();
+			while(rs.next()) {
+				Comment c=new Comment();
+				c.setBoardCommentNo(rs.getInt("board_comment_no"));
+				c.setLevel(rs.getInt("board_comment_level"));
+				c.setBoardCommentWriter(rs.getString("board_comment_writer"));
+				c.setBoardCommentContent(rs.getString("board_comment_content"));
+				c.setBoardRef(rs.getInt("board_ref"));
+				c.setBoardCommentRef(rs.getInt("board_comment_ref"));
+				c.setBoardCommentDate(rs.getDate("board_comment_date"));
+				list.add(c);
+			}
+		}catch(Exception e) {
+			e.printStackTrace();
+		}finally {
+			close(pstmt);
+			close(rs);
+		}
+		return list;
+	}
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
 	
 }	
