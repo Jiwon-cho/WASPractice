@@ -42,11 +42,13 @@ List<Comment> list=(List<Comment>)request.getAttribute("comments");
 		<table id="tbl-board">
 			<tr>
 				<th>글번호</th>
-				<td><%=b.getBoardNo() %></td>
+				<td><%=b.getBoardNo() %> 	<input type="hidden" name="bld" value="<%=b.getBoardNo()%>"></td>
 			</tr>
 			<tr>
 				<th>제 목</th>
-				<td><%=b.getBoardTitle() %></td>
+				<td><input type="text" name="title"
+
+value="<%=b.getBoardTitle() %>"></td>
 			</tr>
 			<tr>
 				<th>작성자</th>
@@ -75,7 +77,7 @@ List<Comment> list=(List<Comment>)request.getAttribute("comments");
 			<tr>
 				<th colspan="2">
 					<button onclick="location.assign('<%=request.getContextPath()%>/board/boardList')">목록</button>
-					<button onclick="location.assign">수정하기</button>
+					<button onclick="location.assign('<%=request.getContextPath()%>/update.bo')">수정하기</button>
 					<button onclick="">삭제하기</button>
 				</th>
 			</tr>

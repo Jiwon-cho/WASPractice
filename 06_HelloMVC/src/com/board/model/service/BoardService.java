@@ -71,4 +71,15 @@ public class BoardService {
 		return list;
 	}
 	
+	
+	
+	public int updateBoard(int bld, String title, String content) {
+		Connection conn=getConnection();
+		int result=dao.updateBoard(conn,bld,title,content);
+		 if(result>0)commit(conn); 
+		else rollback(conn);
+		 close(conn);
+		 return result;
+	}
+	
 }

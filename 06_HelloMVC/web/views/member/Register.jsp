@@ -10,6 +10,27 @@
 				<td>
 					<input type="text" placeholder="4글자이상" name="userId" id="userId_" >
 					<button type="button" onclick="fn_duplicateId();">아이디 중복확인</button>
+					<script>
+					$("#userId_").keyup(e=>{
+					if($(e.target).val().length>=4){
+						 $.ajax({
+							 
+								url:"<%=request.getContextPath()%>/ajax/duplicateId",
+								data:{"userId":$(e.target).val()},
+								success:data=>{
+									console.log(data);
+								$("#userId_+span").remove();	
+						 		if(data){
+						 		$("#userId_").after("<span style='color:green;'>사용가능합니다</span>");
+						 		}else{
+						 			$("#userId_").after("<span style='color:red;'>불가능한 아이디입니다.</span>");
+						 		}
+						 		}
+								})
+					}	
+					})
+					
+					</script>
 				</td>
 				
 			</tr>

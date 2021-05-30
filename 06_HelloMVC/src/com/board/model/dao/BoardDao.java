@@ -185,7 +185,26 @@ public class BoardDao {
 		return list;
 	}
 	
-	
+	public int updateBoard(Connection conn, int bld, String title, String content) {
+		PreparedStatement pstmt=null;
+		int result=0;
+		String sql="UPDATE BOARD SET BTITLE= ?,BCONTENT=? WHERE BLD= ?";
+		
+		try {
+			pstmt=conn.prepareStatement(sql);
+			pstmt.setString(1, title);
+			pstmt.setString(2, content);
+			pstmt.setInt(3, bld);
+			
+			result=pstmt.executeUpdate();
+			
+		}catch(Exception e) {
+			e.printStackTrace();
+		}finally {
+			close(pstmt);
+		}
+		return result;
+	}
 	
 	
 	
