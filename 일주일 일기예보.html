@@ -1,0 +1,57 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>일주일 일기예보</title>
+    <script src="http://code.jquery.com/jquery-3.6.0.min.js"></script>  
+</head>
+<script>
+$.getJSON('https://api.openweathermap.org/data/2.5/onecall?lat=37.5683&lon=126.9778&appid=72d907e7254e1bb6390f7526c46e9e72&units=metric'
+,function(result){
+for(var i=0;i<7;i++){ 
+    var cTemp=result.daily[i].temp.day;
+    var minTemp=result.daily[i].temp.min;
+    var maxTemp=result.daily[i].temp.max;
+     var cDate=result.daily[i].dt;
+    var wIcon=result.daily[i].weather[0].icon;
+    
+    function convertTime(t){
+        var ot= new Date(t*1000);
+        var mt=ot.getMonth()+1;
+        var dt=ot.getDate();
+        var dy=ot.getDay();
+        switch(dy){
+            case 1: dy="월";break;
+            case 2: dy="화";break;
+            case 3: dy="수";break;
+            case 4: dy="목";break;
+            case 5: dy="금";break;
+            case 6: dy="토";break;
+            case 0: dy="일";break;
+        }
+        return mt+"/"+dt+"("+dy+")";
+    }
+    var currentTime=convertTime(cDate)
+    
+    var tableHtml='<tr>'+
+        '<td>날짜: '+currentTime+'</td>'+
+        '<td>평균 기온: '+cTemp+'</td>'+
+        '<td>최고 기온: '+maxTemp+'</td>'+
+        '<td>최저 기온: '+minTemp+'</td>'+
+        '<td><img src="http://openweathermap.org/img/wn/'+wIcon+'@2x.png" alt="'+result.daily[i].weather[0].description+'"></td>'+'</tr>' ;
+    
+        $('tbody').append(tableHtml);
+   
+}})
+</script> 
+<body>
+    <table>
+        <tr>
+        <th>날씨예보</th>
+    </tr>
+   
+    </table>
+</body>
+</html>
