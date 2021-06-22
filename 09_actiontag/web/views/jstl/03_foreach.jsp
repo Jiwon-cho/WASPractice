@@ -85,5 +85,22 @@
 		</c:if>
 	</c:forEach>
 	</table>
+	
+	<h4>c:forTokens 활용하기</h4>
+	<p>
+		StringTokenizer 객체와 비슷한 기능을함
+		문자열을 특정 구분자로 분리하여 반복해서 출력
+		</p>
+	<ul>c:forTokens 속성
+	<li>var: 값을 받을 변수</li>
+	<li>delims: 분리기준이 되는 문자</li>
+	<li>items: 분리할 문자열</li>
+	
+	</ul>
+	<c:set var="hobby" value="노래듣기,축구,장기,게임"/>
+	<c:forTokens var="h" items="${hobby }" delims=",">
+	<h4><c:out value="${h }"/></h4>
+	
+	</c:forTokens> 
 </body>
 </html>
